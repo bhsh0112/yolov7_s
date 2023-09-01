@@ -1,0 +1,19 @@
+layer {
+  name: "backbone.features.8_temp"
+  type: "Convolution"
+  bottom: "relu2_temp"
+  top: "backbone.features.8_temp"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 384
+    pad: 0
+    kernel_size: 3
+  }
+}

@@ -1,0 +1,22 @@
+layer {
+  name: "backbone.features.12.bn_temp"
+  type: "BatchNorm"
+  bottom: "backbone.features.11_temp"
+  top: "backbone.features.12.bn_temp"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  batch_norm_param {
+    moving_average_fraction: 0.999000012875
+    eps: 0.0010000000475
+  }
+}

@@ -1,0 +1,6 @@
+layer {
+  name: "rpn_head.cls.head.1.sc_relu"
+  type: "ReLU"
+  bottom: "rpn_head.cls.head.1.sc"
+  top: "rpn_head.cls.head.1.sc"
+}

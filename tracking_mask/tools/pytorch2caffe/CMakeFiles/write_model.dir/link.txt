@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/write_model.dir/wm.cpp.o  -o write_model /home/omnisky/programfiles/objectdetection/detector_ssd/build/lib/libcaffe.so /usr/lib/x86_64-linux-gnu/libglog.so /usr/lib/x86_64-linux-gnu/libboost_system.so -Wl,-rpath,/home/omnisky/programfiles/objectdetection/detector_ssd/build/lib 

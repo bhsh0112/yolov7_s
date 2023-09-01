@@ -1,0 +1,9 @@
+train: ./data/data_test/dataSet_path/train.txt  # 118287 images
+val: ./data/data_test/dataSet_path/val.txt   # 5000 images
+test: ./data/data_test/dataSet_path/test.txt   # 20288 of 40670 images, submit to https://competitions.codalab.org/competitions/20794
+
+# number of classes
+nc: 5
+
+# class names
+names: [ 'box','electric fan','medicine','toy','disinfectant']

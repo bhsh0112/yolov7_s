@@ -1,0 +1,6 @@
+layer {
+  name: "relu3_srch"
+  type: "ReLU"
+  bottom: "backbone.features.9.sc_srch"
+  top: "relu3_srch"
+}

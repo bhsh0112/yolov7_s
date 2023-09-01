@@ -1,0 +1,1 @@
+python detect_bbox.py --weights yolov7.pt --view-img --conf 0.5 --img-size 1280 --source inference/imgs/1.jpg

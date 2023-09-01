@@ -1,0 +1,2 @@
+python ros_detect.py --weights yolov7.pt --conf 0.3 --object-name bottle --img-size 1280 --source inference/imgs/1.jpg --view-img
+#python ros_detect.py --weights red2.pt --conf 0.5 --object-name bottle --img-size 1280 --source inference/imgs/1.jpg --view-img

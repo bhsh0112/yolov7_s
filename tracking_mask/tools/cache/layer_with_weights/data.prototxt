@@ -1,0 +1,8 @@
+layer {
+  name: "data"
+  type: "Input"
+  top: "template"
+  top: "search"
+  input_param { shape: { dim: 1 dim: 3 dim: 127 dim: 127 } 
+                shape: { dim: 1 dim: 3 dim: 287 dim: 287 }}
+}

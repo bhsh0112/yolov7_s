@@ -1,0 +1,1271 @@
+name: "Robint_SiameseRPN_AlexNet"
+layer {
+  name: "data"
+  type: "Input"
+  top: "template"
+  top: "search"
+  input_param { shape: { dim: 1 dim: 3 dim: 127 dim: 127 } 
+                shape: { dim: 1 dim: 3 dim: 287 dim: 287 }}
+}
+layer {
+  name: "backbone.features.0_temp"
+  type: "Convolution"
+  bottom: "template"
+  top: "backbone.features.0_temp"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 96
+    kernel_size: 11
+    stride: 2
+  }
+}
+layer {
+  name: "backbone.features.1.bn_temp"
+  type: "BatchNorm"
+  bottom: "backbone.features.0_temp"
+  top: "backbone.features.1.bn_temp"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  batch_norm_param {
+    moving_average_fraction: 0.999000012875
+    eps: 0.0010000000475
+  }
+}
+layer {
+  name: "backbone.features.1.sc_temp"
+  type: "Scale"
+  bottom: "backbone.features.1.bn_temp"
+  top: "backbone.features.1.sc_temp"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 1.0
+    decay_mult: 0.0
+  }
+  scale_param {
+    filler {
+      type: "constant"
+      value: 1.0
+    }
+    bias_term: true
+    bias_filler {
+      type: "constant"
+      value: 0.0
+    }
+  }
+}
+layer {
+  name: "pool1_temp"
+  type: "Pooling"
+  bottom: "backbone.features.1.sc_temp"
+  top: "pool1_temp"
+  pooling_param {
+    pool: MAX
+    kernel_size: 3
+    stride: 2
+  }
+}
+layer {
+  name: "relu1_temp"
+  type: "ReLU"
+  bottom: "pool1_temp"
+  top: "relu1_temp"
+}
+layer {
+  name: "backbone.features.4_temp"
+  type: "Convolution"
+  bottom: "relu1_temp"
+  top: "backbone.features.4_temp"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 256
+    pad: 0
+    kernel_size: 5
+    # group: 2
+  }
+}
+layer {
+  name: "backbone.features.5.bn_temp"
+  type: "BatchNorm"
+  bottom: "backbone.features.4_temp"
+  top: "backbone.features.5.bn_temp"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  batch_norm_param {
+    moving_average_fraction: 0.999000012875
+    eps: 0.0010000000475
+  }
+}
+layer {
+  name: "backbone.features.5.sc_temp"
+  type: "Scale"
+  bottom: "backbone.features.5.bn_temp"
+  top: "backbone.features.5.sc_temp"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 1.0
+    decay_mult: 0.0
+  }
+  scale_param {
+    filler {
+      type: "constant"
+      value: 1.0
+    }
+    bias_term: true
+    bias_filler {
+      type: "constant"
+      value: 0.0
+    }
+  }
+}
+layer {
+  name: "pool2_temp"
+  type: "Pooling"
+  bottom: "backbone.features.5.sc_temp"
+  top: "pool2_temp"
+  pooling_param {
+    pool: MAX
+    kernel_size: 3
+    stride: 2
+  }
+}
+layer {
+  name: "relu2_temp"
+  type: "ReLU"
+  bottom: "pool2_temp"
+  top: "relu2_temp"
+}
+layer {
+  name: "backbone.features.8_temp"
+  type: "Convolution"
+  bottom: "relu2_temp"
+  top: "backbone.features.8_temp"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 384
+    pad: 0
+    kernel_size: 3
+  }
+}
+layer {
+  name: "backbone.features.9.bn_temp"
+  type: "BatchNorm"
+  bottom: "backbone.features.8_temp"
+  top: "backbone.features.9.bn_temp"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  batch_norm_param {
+    moving_average_fraction: 0.999000012875
+    eps: 0.0010000000475
+  }
+}
+layer {
+  name: "backbone.features.9.sc_temp"
+  type: "Scale"
+  bottom: "backbone.features.9.bn_temp"
+  top: "backbone.features.9.sc_temp"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 1.0
+    decay_mult: 0.0
+  }
+  scale_param {
+    filler {
+      type: "constant"
+      value: 1.0
+    }
+    bias_term: true
+    bias_filler {
+      type: "constant"
+      value: 0.0
+    }
+  }
+}
+layer {
+  name: "relu3_temp"
+  type: "ReLU"
+  bottom: "backbone.features.9.sc_temp"
+  top: "relu3_temp"
+}
+layer {
+  name: "backbone.features.11_temp"
+  type: "Convolution"
+  bottom: "relu3_temp"
+  top: "backbone.features.11_temp"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 384
+    pad: 0
+    kernel_size: 3
+    # group: 2
+  }
+}
+layer {
+  name: "backbone.features.12.bn_temp"
+  type: "BatchNorm"
+  bottom: "backbone.features.11_temp"
+  top: "backbone.features.12.bn_temp"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  batch_norm_param {
+    moving_average_fraction: 0.999000012875
+    eps: 0.0010000000475
+  }
+}
+layer {
+  name: "backbone.features.12.sc_temp"
+  type: "Scale"
+  bottom: "backbone.features.12.bn_temp"
+  top: "backbone.features.12.sc_temp"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 1.0
+    decay_mult: 0.0
+  }
+  scale_param {
+    filler {
+      type: "constant"
+      value: 1.0
+    }
+    bias_term: true
+    bias_filler {
+      type: "constant"
+      value: 0.0
+    }
+  }
+}
+layer {
+  name: "relu4_temp"
+  type: "ReLU"
+  bottom: "backbone.features.12.sc_temp"
+  top: "relu4_temp"
+}
+layer {
+  name: "backbone.features.14_temp"
+  type: "Convolution"
+  bottom: "relu4_temp"
+  top: "backbone.features.14_temp"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 256
+    pad: 0
+    kernel_size: 3
+    # group: 2
+  }
+}
+layer {
+  name: "backbone.features.15.bn_temp"
+  type: "BatchNorm"
+  bottom: "backbone.features.14_temp"
+  top: "backbone.features.15.bn_temp"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  batch_norm_param {
+    moving_average_fraction: 0.999000012875
+    eps: 0.0010000000475
+  }
+}
+layer {
+  name: "backbone.features.15.sc_temp"
+  type: "Scale"
+  bottom: "backbone.features.15.bn_temp"
+  top: "backbone.features.15.sc_temp"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 1.0
+    decay_mult: 0.0
+  }
+  scale_param {
+    filler {
+      type: "constant"
+      value: 1.0
+    }
+    bias_term: true
+    bias_filler {
+      type: "constant"
+      value: 0.0
+    }
+  }
+}
+layer {
+  name: "backbone.features.0_srch"
+  type: "Convolution"
+  bottom: "search"
+  top: "backbone.features.0_srch"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 96
+    kernel_size: 11
+    stride: 2
+  }
+}
+layer {
+  name: "backbone.features.1.bn_srch"
+  type: "BatchNorm"
+  bottom: "backbone.features.0_srch"
+  top: "backbone.features.1.bn_srch"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  batch_norm_param {
+    moving_average_fraction: 0.999000012875
+    eps: 0.0010000000475
+  }
+}
+layer {
+  name: "backbone.features.1.sc_srch"
+  type: "Scale"
+  bottom: "backbone.features.1.bn_srch"
+  top: "backbone.features.1.sc_srch"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 1.0
+    decay_mult: 0.0
+  }
+  scale_param {
+    filler {
+      type: "constant"
+      value: 1.0
+    }
+    bias_term: true
+    bias_filler {
+      type: "constant"
+      value: 0.0
+    }
+  }
+}
+layer {
+  name: "pool1_srch"
+  type: "Pooling"
+  bottom: "backbone.features.1.sc_srch"
+  top: "pool1_srch"
+  pooling_param {
+    pool: MAX
+    kernel_size: 3
+    stride: 2
+  }
+}
+layer {
+  name: "relu1_srch"
+  type: "ReLU"
+  bottom: "pool1_srch"
+  top: "relu1_srch"
+}
+layer {
+  name: "backbone.features.4_srch"
+  type: "Convolution"
+  bottom: "relu1_srch"
+  top: "backbone.features.4_srch"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 256
+    pad: 0
+    kernel_size: 5
+    # group: 2
+  }
+}
+layer {
+  name: "backbone.features.5.bn_srch"
+  type: "BatchNorm"
+  bottom: "backbone.features.4_srch"
+  top: "backbone.features.5.bn_srch"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  batch_norm_param {
+    moving_average_fraction: 0.999000012875
+    eps: 0.0010000000475
+  }
+}
+layer {
+  name: "backbone.features.5.sc_srch"
+  type: "Scale"
+  bottom: "backbone.features.5.bn_srch"
+  top: "backbone.features.5.sc_srch"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 1.0
+    decay_mult: 0.0
+  }
+  scale_param {
+    filler {
+      type: "constant"
+      value: 1.0
+    }
+    bias_term: true
+    bias_filler {
+      type: "constant"
+      value: 0.0
+    }
+  }
+}
+layer {
+  name: "pool2_srch"
+  type: "Pooling"
+  bottom: "backbone.features.5.sc_srch"
+  top: "pool2_srch"
+  pooling_param {
+    pool: MAX
+    kernel_size: 3
+    stride: 2
+  }
+}
+layer {
+  name: "relu2_srch"
+  type: "ReLU"
+  bottom: "pool2_srch"
+  top: "relu2_srch"
+}
+layer {
+  name: "backbone.features.8_srch"
+  type: "Convolution"
+  bottom: "relu2_srch"
+  top: "backbone.features.8_srch"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 384
+    pad: 0
+    kernel_size: 3
+  }
+}
+layer {
+  name: "backbone.features.9.bn_srch"
+  type: "BatchNorm"
+  bottom: "backbone.features.8_srch"
+  top: "backbone.features.9.bn_srch"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  batch_norm_param {
+    moving_average_fraction: 0.999000012875
+    eps: 0.0010000000475
+  }
+}
+layer {
+  name: "backbone.features.9.sc_srch"
+  type: "Scale"
+  bottom: "backbone.features.9.bn_srch"
+  top: "backbone.features.9.sc_srch"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 1.0
+    decay_mult: 0.0
+  }
+  scale_param {
+    filler {
+      type: "constant"
+      value: 1.0
+    }
+    bias_term: true
+    bias_filler {
+      type: "constant"
+      value: 0.0
+    }
+  }
+}
+layer {
+  name: "relu3_srch"
+  type: "ReLU"
+  bottom: "backbone.features.9.sc_srch"
+  top: "relu3_srch"
+}
+layer {
+  name: "backbone.features.11_srch"
+  type: "Convolution"
+  bottom: "relu3_srch"
+  top: "backbone.features.11_srch"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 384
+    pad: 0
+    kernel_size: 3
+    # group: 2
+  }
+}
+layer {
+  name: "backbone.features.12.bn_srch"
+  type: "BatchNorm"
+  bottom: "backbone.features.11_srch"
+  top: "backbone.features.12.bn_srch"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  batch_norm_param {
+    moving_average_fraction: 0.999000012875
+    eps: 0.0010000000475
+  }
+}
+layer {
+  name: "backbone.features.12.sc_srch"
+  type: "Scale"
+  bottom: "backbone.features.12.bn_srch"
+  top: "backbone.features.12.sc_srch"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 1.0
+    decay_mult: 0.0
+  }
+  scale_param {
+    filler {
+      type: "constant"
+      value: 1.0
+    }
+    bias_term: true
+    bias_filler {
+      type: "constant"
+      value: 0.0
+    }
+  }
+}
+layer {
+  name: "relu4_srch"
+  type: "ReLU"
+  bottom: "backbone.features.12.sc_srch"
+  top: "relu4_srch"
+}
+layer {
+  name: "backbone.features.14_srch"
+  type: "Convolution"
+  bottom: "relu4_srch"
+  top: "backbone.features.14_srch"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 256
+    pad: 0
+    kernel_size: 3
+    # group: 2
+  }
+}
+layer {
+  name: "backbone.features.15.bn_srch"
+  type: "BatchNorm"
+  bottom: "backbone.features.14_srch"
+  top: "backbone.features.15.bn_srch"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  batch_norm_param {
+    moving_average_fraction: 0.999000012875
+    eps: 0.0010000000475
+  }
+}
+layer {
+  name: "backbone.features.15.sc_srch"
+  type: "Scale"
+  bottom: "backbone.features.15.bn_srch"
+  top: "backbone.features.15.sc_srch"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 1.0
+    decay_mult: 0.0
+  }
+  scale_param {
+    filler {
+      type: "constant"
+      value: 1.0
+    }
+    bias_term: true
+    bias_filler {
+      type: "constant"
+      value: 0.0
+    }
+  }
+}
+layer {
+  name: "rpn_head.cls.conv_kernel.0"
+  type: "Convolution"
+  bottom: "backbone.features.15.sc_temp"
+  top: "rpn_head.cls.conv_kernel.0"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  convolution_param {
+    bias_term: false
+    num_output: 256
+    pad: 0
+    kernel_size: 3
+    # group: 2
+  }
+}
+layer {
+  name: "rpn_head.cls.conv_kernel.1.bn"
+  type: "BatchNorm"
+  bottom: "rpn_head.cls.conv_kernel.0"
+  top: "rpn_head.cls.conv_kernel.1.bn"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  batch_norm_param {
+    moving_average_fraction: 0.999000012875
+    eps: 0.0010000000475
+  }
+}
+layer {
+  name: "rpn_head.cls.conv_kernel.1.sc"
+  type: "Scale"
+  bottom: "rpn_head.cls.conv_kernel.1.bn"
+  top: "rpn_head.cls.conv_kernel.1.sc"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 1.0
+    decay_mult: 0.0
+  }
+  scale_param {
+    filler {
+      type: "constant"
+      value: 1.0
+    }
+    bias_term: true
+    bias_filler {
+      type: "constant"
+      value: 0.0
+    }
+  }
+}
+layer {
+  name: "rpn_head.cls.conv_kernel.1.sc_relu"
+  type: "ReLU"
+  bottom: "rpn_head.cls.conv_kernel.1.sc"
+  top: "rpn_head.cls.conv_kernel.1.sc"
+}
+layer {
+  name: "rpn_head.cls.conv_search.0"
+  type: "Convolution"
+  bottom: "backbone.features.15.sc_srch"
+  top: "rpn_head.cls.conv_search.0"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  convolution_param {
+    bias_term: false
+    num_output: 256
+    pad: 0
+    kernel_size: 3
+    # group: 2
+  }
+}
+layer {
+  name: "rpn_head.cls.conv_search.1.bn"
+  type: "BatchNorm"
+  bottom: "rpn_head.cls.conv_search.0"
+  top: "rpn_head.cls.conv_search.1.bn"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  batch_norm_param {
+    moving_average_fraction: 0.999000012875
+    eps: 0.0010000000475
+  }
+}
+layer {
+  name: "rpn_head.cls.conv_search.1.sc"
+  type: "Scale"
+  bottom: "rpn_head.cls.conv_search.1.bn"
+  top: "rpn_head.cls.conv_search.1.sc"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 1.0
+    decay_mult: 0.0
+  }
+  scale_param {
+    filler {
+      type: "constant"
+      value: 1.0
+    }
+    bias_term: true
+    bias_filler {
+      type: "constant"
+      value: 0.0
+    }
+  }
+}
+layer {
+  name: "rpn_head.cls.conv_search.1.sc_relu"
+  type: "ReLU"
+  bottom: "rpn_head.cls.conv_search.1.sc"
+  top: "rpn_head.cls.conv_search.1.sc"
+}
+layer {
+    name: "rpn_head.cls.conv_kernel.1.sc_reshape"
+    type: "Reshape"
+    bottom: "rpn_head.cls.conv_kernel.1.sc"
+    top: "rpn_head.cls.conv_kernel.1.sc_reshape"
+    reshape_param {
+        shape {
+            dim: 256
+            dim: 1
+            dim: 4
+            dim: 4
+        }
+    }
+}
+layer {
+  name: "cls_feature"
+  type: "DynamicConvolution"
+  bottom: "rpn_head.cls.conv_search.1.sc"
+  bottom: "rpn_head.cls.conv_kernel.1.sc_reshape"
+  top: "cls_feature"
+  dynamic_convolution_param {
+    engine: CAFFE
+    group: 256
+}
+}
+layer {
+  name: "rpn_head.cls.head.0"
+  type: "Convolution"
+  bottom: "cls_feature"
+  top: "rpn_head.cls.head.0"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  convolution_param {
+    bias_term: false
+    num_output: 256
+    pad: 0
+    kernel_size: 1
+    # group: 2
+  }
+}
+layer {
+  name: "rpn_head.cls.head.1.bn"
+  type: "BatchNorm"
+  bottom: "rpn_head.cls.head.0"
+  top: "rpn_head.cls.head.1.bn"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  batch_norm_param {
+    moving_average_fraction: 0.999000012875
+    eps: 0.0010000000475
+  }
+}
+layer {
+  name: "rpn_head.cls.head.1.sc"
+  type: "Scale"
+  bottom: "rpn_head.cls.head.1.bn"
+  top: "rpn_head.cls.head.1.sc"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 1.0
+    decay_mult: 0.0
+  }
+  scale_param {
+    filler {
+      type: "constant"
+      value: 1.0
+    }
+    bias_term: true
+    bias_filler {
+      type: "constant"
+      value: 0.0
+    }
+  }
+}
+layer {
+  name: "rpn_head.cls.head.1.sc_relu"
+  type: "ReLU"
+  bottom: "rpn_head.cls.head.1.sc"
+  top: "rpn_head.cls.head.1.sc"
+}
+layer {
+  name: "rpn_head.cls.head.3"
+  type: "Convolution"
+  bottom: "rpn_head.cls.head.1.sc"
+  top: "rpn_head.cls.head.3"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  convolution_param {
+    bias_term: true
+    num_output: 10
+    pad: 0
+    kernel_size: 1
+    # group: 2
+  }
+}
+layer {
+  name: "rpn_head.loc.conv_kernel.0"
+  type: "Convolution"
+  bottom: "backbone.features.15.sc_temp"
+  top: "rpn_head.loc.conv_kernel.0"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  convolution_param {
+    bias_term: false
+    num_output: 256
+    pad: 0
+    kernel_size: 3
+    # group: 2
+  }
+}
+layer {
+  name: "rpn_head.loc.conv_kernel.1.bn"
+  type: "BatchNorm"
+  bottom: "rpn_head.loc.conv_kernel.0"
+  top: "rpn_head.loc.conv_kernel.1.bn"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  batch_norm_param {
+    moving_average_fraction: 0.999000012875
+    eps: 0.0010000000475
+  }
+}
+layer {
+  name: "rpn_head.loc.conv_kernel.1.sc"
+  type: "Scale"
+  bottom: "rpn_head.loc.conv_kernel.1.bn"
+  top: "rpn_head.loc.conv_kernel.1.sc"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 1.0
+    decay_mult: 0.0
+  }
+  scale_param {
+    filler {
+      type: "constant"
+      value: 1.0
+    }
+    bias_term: true
+    bias_filler {
+      type: "constant"
+      value: 0.0
+    }
+  }
+}
+layer {
+  name: "rpn_head.loc.conv_kernel.1.sc_relu"
+  type: "ReLU"
+  bottom: "rpn_head.loc.conv_kernel.1.sc"
+  top: "rpn_head.loc.conv_kernel.1.sc"
+}
+layer {
+  name: "rpn_head.loc.conv_search.0"
+  type: "Convolution"
+  bottom: "backbone.features.15.sc_srch"
+  top: "rpn_head.loc.conv_search.0"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  convolution_param {
+    bias_term: false
+    num_output: 256
+    pad: 0
+    kernel_size: 3
+    # group: 2
+  }
+}
+layer {
+  name: "rpn_head.loc.conv_search.1.bn"
+  type: "BatchNorm"
+  bottom: "rpn_head.loc.conv_search.0"
+  top: "rpn_head.loc.conv_search.1.bn"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  batch_norm_param {
+    moving_average_fraction: 0.999000012875
+    eps: 0.0010000000475
+  }
+}
+layer {
+  name: "rpn_head.loc.conv_search.1.sc"
+  type: "Scale"
+  bottom: "rpn_head.loc.conv_search.1.bn"
+  top: "rpn_head.loc.conv_search.1.sc"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 1.0
+    decay_mult: 0.0
+  }
+  scale_param {
+    filler {
+      type: "constant"
+      value: 1.0
+    }
+    bias_term: true
+    bias_filler {
+      type: "constant"
+      value: 0.0
+    }
+  }
+}
+layer {
+  name: "rpn_head.loc.conv_search.1.sc_relu"
+  type: "ReLU"
+  bottom: "rpn_head.loc.conv_search.1.sc"
+  top: "rpn_head.loc.conv_search.1.sc"
+}
+layer {
+    name: "rpn_head.loc.conv_kernel.1.sc_reshape"
+    type: "Reshape"
+    bottom: "rpn_head.loc.conv_kernel.1.sc"
+    top: "rpn_head.loc.conv_kernel.1.sc_reshape"
+    reshape_param {
+        shape {
+            dim: 256
+            dim: 1
+            dim: 4
+            dim: 4
+        }
+    }
+}
+layer {
+  name: "loc_feature"
+  type: "DynamicConvolution"
+  bottom: "rpn_head.loc.conv_search.1.sc"
+  bottom: "rpn_head.loc.conv_kernel.1.sc_reshape"
+  top: "loc_feature"
+  dynamic_convolution_param {
+    engine: CAFFE
+    group: 256
+}
+}
+layer {
+  name: "rpn_head.loc.head.0"
+  type: "Convolution"
+  bottom: "loc_feature"
+  top: "rpn_head.loc.head.0"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  convolution_param {
+    bias_term: false
+    num_output: 256
+    pad: 0
+    kernel_size: 1
+    # group: 2
+  }
+}
+layer {
+  name: "rpn_head.loc.head.1.bn"
+  type: "BatchNorm"
+  bottom: "rpn_head.loc.head.0"
+  top: "rpn_head.loc.head.1.bn"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  batch_norm_param {
+    moving_average_fraction: 0.999000012875
+    eps: 0.0010000000475
+  }
+}
+layer {
+  name: "rpn_head.loc.head.1.sc"
+  type: "Scale"
+  bottom: "rpn_head.loc.head.1.bn"
+  top: "rpn_head.loc.head.1.sc"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 1.0
+    decay_mult: 0.0
+  }
+  scale_param {
+    filler {
+      type: "constant"
+      value: 1.0
+    }
+    bias_term: true
+    bias_filler {
+      type: "constant"
+      value: 0.0
+    }
+  }
+}
+layer {
+  name: "rpn_head.loc.head.1.sc_relu"
+  type: "ReLU"
+  bottom: "rpn_head.loc.head.1.sc"
+  top: "rpn_head.loc.head.1.sc"
+}
+layer {
+  name: "rpn_head.loc.head.3"
+  type: "Convolution"
+  bottom: "rpn_head.loc.head.1.sc"
+  top: "rpn_head.loc.head.3"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  convolution_param {
+    bias_term: true
+    num_output: 20
+    pad: 0
+    kernel_size: 1
+    # group: 2
+  }
+}

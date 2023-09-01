@@ -1,0 +1,22 @@
+layer {
+  name: "rpn_head.loc.conv_search.1.bn"
+  type: "BatchNorm"
+  bottom: "rpn_head.loc.conv_search.0"
+  top: "rpn_head.loc.conv_search.1.bn"
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  param {
+    lr_mult: 0.0
+    decay_mult: 0.0
+  }
+  batch_norm_param {
+    moving_average_fraction: 0.999000012875
+    eps: 0.0010000000475
+  }
+}

@@ -1,0 +1,19 @@
+layer {
+  name: "backbone.features.0_srch"
+  type: "Convolution"
+  bottom: "search"
+  top: "backbone.features.0_srch"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 96
+    kernel_size: 11
+    stride: 2
+  }
+}

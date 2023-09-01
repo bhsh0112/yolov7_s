@@ -1,0 +1,1 @@
+python detect_tcp.py --weights yolov7.pt --conf 0.25 --object-name bottle --img-size 1280 --source inference/imgs/1.jpg

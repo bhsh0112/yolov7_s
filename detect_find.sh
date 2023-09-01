@@ -1,0 +1,1 @@
+python detect_find.py --weights yolov7.pt --conf 0.5 --img-size 1280 --source inference/imgs/1.jpg

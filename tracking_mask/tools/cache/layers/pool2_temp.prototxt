@@ -1,0 +1,11 @@
+layer {
+  name: "pool2_temp"
+  type: "Pooling"
+  bottom: "backbone.features.5.sc_temp"
+  top: "pool2_temp"
+  pooling_param {
+    pool: MAX
+    kernel_size: 3
+    stride: 2
+  }
+}

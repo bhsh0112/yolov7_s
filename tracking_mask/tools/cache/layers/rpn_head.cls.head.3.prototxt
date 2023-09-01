@@ -1,0 +1,17 @@
+layer {
+  name: "rpn_head.cls.head.3"
+  type: "Convolution"
+  bottom: "rpn_head.cls.head.1.sc"
+  top: "rpn_head.cls.head.3"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  convolution_param {
+    bias_term: true
+    num_output: 10
+    pad: 0
+    kernel_size: 1
+    # group: 2
+  }
+}

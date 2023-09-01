@@ -1,0 +1,2 @@
+export PYTHONPATH=/opt/conda/lib/python3.8:$PYTHONPATH
+xhost +

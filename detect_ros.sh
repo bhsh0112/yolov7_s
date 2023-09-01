@@ -1,0 +1,1 @@
+python detect_ros.py --weights yolov7.pt --object-name biscuit_box --view-img --conf 0.25 --img-size 1280 --source 4

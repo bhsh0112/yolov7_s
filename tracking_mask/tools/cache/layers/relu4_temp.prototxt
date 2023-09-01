@@ -1,0 +1,6 @@
+layer {
+  name: "relu4_temp"
+  type: "ReLU"
+  bottom: "backbone.features.12.sc_temp"
+  top: "relu4_temp"
+}

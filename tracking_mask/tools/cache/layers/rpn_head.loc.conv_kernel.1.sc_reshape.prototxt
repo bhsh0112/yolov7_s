@@ -1,0 +1,14 @@
+layer {
+    name: "rpn_head.loc.conv_kernel.1.sc_reshape"
+    type: "Reshape"
+    bottom: "rpn_head.loc.conv_kernel.1.sc"
+    top: "rpn_head.loc.conv_kernel.1.sc_reshape"
+    reshape_param {
+        shape {
+            dim: 256
+            dim: 1
+            dim: 4
+            dim: 4
+        }
+    }
+}

@@ -1,0 +1,6 @@
+layer {
+  name: "relu2_srch"
+  type: "ReLU"
+  bottom: "pool2_srch"
+  top: "relu2_srch"
+}

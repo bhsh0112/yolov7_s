@@ -1,0 +1,11 @@
+layer {
+  name: "loc_feature"
+  type: "DynamicConvolution"
+  bottom: "rpn_head.loc.conv_search.1.sc"
+  bottom: "rpn_head.loc.conv_kernel.1.sc_reshape"
+  top: "loc_feature"
+  dynamic_convolution_param {
+    engine: CAFFE
+    group: 256
+}
+}

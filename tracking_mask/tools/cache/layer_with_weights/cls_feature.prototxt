@@ -1,0 +1,11 @@
+layer {
+  name: "cls_feature"
+  type: "DynamicConvolution"
+  bottom: "rpn_head.cls.conv_search.1.sc"
+  bottom: "rpn_head.cls.conv_kernel.1.sc_reshape"
+  top: "cls_feature"
+  dynamic_convolution_param {
+    engine: CAFFE
+    group: 256
+}
+}

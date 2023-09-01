@@ -1,0 +1,11 @@
+layer {
+  name: "pool1_srch"
+  type: "Pooling"
+  bottom: "backbone.features.1.sc_srch"
+  top: "pool1_srch"
+  pooling_param {
+    pool: MAX
+    kernel_size: 3
+    stride: 2
+  }
+}

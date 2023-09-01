@@ -1,0 +1,19 @@
+layer {
+  name: "backbone.features.8_srch"
+  type: "Convolution"
+  bottom: "relu2_srch"
+  top: "backbone.features.8_srch"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  convolution_param {
+    num_output: 384
+    pad: 0
+    kernel_size: 3
+  }
+}

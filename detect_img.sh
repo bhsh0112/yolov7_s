@@ -1,0 +1,1 @@
+python detect.py --weights yolov7.pt --view-img --conf 0.5 --img-size 1280 --source 4

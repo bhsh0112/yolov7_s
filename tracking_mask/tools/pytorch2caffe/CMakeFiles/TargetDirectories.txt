@@ -1,0 +1,3 @@
+/home/omnisky/programfiles/tracking/pysot/tools/pytorch2caffe/CMakeFiles/edit_cache.dir
+/home/omnisky/programfiles/tracking/pysot/tools/pytorch2caffe/CMakeFiles/rebuild_cache.dir
+/home/omnisky/programfiles/tracking/pysot/tools/pytorch2caffe/CMakeFiles/write_model.dir
