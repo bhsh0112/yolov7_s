@@ -1,0 +1,2 @@
+tracking_mask/tools/net.prototxt filter=lfs diff=lfs merge=lfs -text
+tracking_mask/tools/pytorch2caffe/model.prototxt filter=lfs diff=lfs merge=lfs -text
